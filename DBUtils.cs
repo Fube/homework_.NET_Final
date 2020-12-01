@@ -107,5 +107,36 @@ namespace TermProject
 
             return toReturn;
         }
+
+        public void Update(long idToUPD, Contact contact)
+        {
+            var connection = new SqlConnection(_connectionString);
+
+            _compileCommand(out var command, connection, updateQuery);
+
+            var (id, fName, lName, phoneNumber) = contact;
+
+            if (id != null)
+            {
+                throw new DirtyFieldException("ID", "DB");
+            }
+            command.Parameters.AddWithValue("@id", idToUPD);
+            command.Parameters.AddWithValue("@fName", fName);
+            command.Parameters.AddWithValue("@lName", lName);
+            command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+
+            _tryExecute(connection, command);
+        }
+
+        public void RemoveOne(long idToDEL)
+        {
+            var connection = new SqlConnection(_connectionString);
+
+            _compileCommand(out var command, connection, deleteQuery);
+
+            command.Parameters.AddWithValue("@id", idToDEL);
+
+            _tryExecute(connection, command);
+        }
     }
 }
