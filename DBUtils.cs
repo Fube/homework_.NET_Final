@@ -132,13 +132,13 @@ namespace TermProject
             _tryExecute(connection, command);
         }
 
-        public void RemoveOne(long idToDEL)
+        public void RemoveOne(long id)
         {
             var connection = new SqlConnection(_connectionString);
 
             _compileCommand(out var command, connection, deleteQuery);
 
-            command.Parameters.AddWithValue("@id", idToDEL);
+            command.Parameters.AddWithValue("@id", id);
 
             _tryExecute(connection, command);
         }
