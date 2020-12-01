@@ -108,19 +108,15 @@ namespace TermProject
             return toReturn;
         }
 
-        public void Update(long idToUPD, Contact contact)
+        public void Update(long id)
         {
             var connection = new SqlConnection(_connectionString);
 
             _compileCommand(out var command, connection, updateQuery);
 
-            var (id, fName, lName, phoneNumber) = contact;
+            var (_, fName, lName, phoneNumber) = ContactManager.Instance.FindById(id); ;
 
-            if (id != null)
-            {
-                throw new DirtyFieldException("ID", "DB");
-            }
-            command.Parameters.AddWithValue("@id", idToUPD);
+            command.Parameters.AddWithValue("@id", id);
             command.Parameters.AddWithValue("@fName", fName);
             command.Parameters.AddWithValue("@lName", lName);
             command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
@@ -128,13 +124,13 @@ namespace TermProject
             _tryExecute(connection, command);
         }
 
-        public void RemoveOne(long idToDEL)
+        public void RemoveOne(long id)
         {
             var connection = new SqlConnection(_connectionString);
 
             _compileCommand(out var command, connection, deleteQuery);
 
-            command.Parameters.AddWithValue("@id", idToDEL);
+            command.Parameters.AddWithValue("@id", id);
 
             _tryExecute(connection, command);
         }
