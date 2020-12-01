@@ -92,5 +92,20 @@ namespace TermProject
 
             return toReturn;
         }
+        public List<Contact> ReadOne(long id)
+        {
+            List<Contact> toReturn = new List<Contact>();
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                _compileCommand(out var command, connection, $"SELECT * FROM dbo.contacts c where c.id={id}");
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+                toReturn.Add(new Contact((long)reader[0], reader[1].ToString(), reader[2].ToString(), reader[3].ToString()));
+            }
+
+            return toReturn;
+        }
     }
 }
