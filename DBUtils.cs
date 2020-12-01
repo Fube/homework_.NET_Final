@@ -114,7 +114,7 @@ namespace TermProject
             return toReturn;
         }
 
-        public void Update(long idToUPD, Contact contact)
+        public void Update(long id)
         {
 
             //TODO: use ContactManager's FindById
@@ -122,13 +122,9 @@ namespace TermProject
 
             _compileCommand(out var command, connection, updateQuery);
 
-            var (id, fName, lName, phoneNumber) = contact;
+            var (_, fName, lName, phoneNumber) = ContactManager.Instance.FindById(id);
 
-            if (id != null)
-            {
-                throw new DirtyFieldException("ID", "DB");
-            }
-            command.Parameters.AddWithValue("@id", idToUPD);
+            command.Parameters.AddWithValue("@id", id);
             command.Parameters.AddWithValue("@fName", fName);
             command.Parameters.AddWithValue("@lName", lName);
             command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
