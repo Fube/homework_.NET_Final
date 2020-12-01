@@ -20,6 +20,8 @@ namespace TermProject
 
         private const string readAllQuery = "SELECT * FROM dbo.contacts c ORDER BY c.id";
 
+        private const string readOneQuery = "SELECT * FROM dbo.contacts c where c.id=@id";
+
         private const string updateQuery =
             "UPDATE dbo.contacts SET first_name=@fName, last_name=@lName, phone_number=@phoneNumber WHERE c.id=@id";
 
@@ -86,7 +88,7 @@ namespace TermProject
 
                 var reader = command.ExecuteReader();
                 while (reader.Read()) 
-                    toReturn.Add(new Contact((long)reader[0],reader[1].ToString(), reader[2].ToString(), reader[3].ToString()));
+                    toReturn.Add(new Contact((long)reader["id"],reader["first_name"].ToString(), reader["last_name"].ToString(), reader["phone_number"].ToString()));
                 
             }
 
@@ -98,11 +100,15 @@ namespace TermProject
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                _compileCommand(out var command, connection, $"SELECT * FROM dbo.contacts c where c.id={id}");
+                _compileCommand(out var command, connection, readOneQuery);
+
+                command.Parameters.AddWithValue("@id", id);
+
                 connection.Open();
 
                 var reader = command.ExecuteReader();
-                toReturn.Add(new Contact((long)reader[0], reader[1].ToString(), reader[2].ToString(), reader[3].ToString()));
+                while (reader.Read())
+                    toReturn.Add(new Contact((long)reader["id"], reader["first_name"].ToString(), reader["last_name"].ToString(), reader["phone_number"].ToString()));
             }
 
             return toReturn;
