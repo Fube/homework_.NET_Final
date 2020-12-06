@@ -1,0 +1,15 @@
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\bin\Debug\TermProject.exe.config
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\bin\Debug\TermProject.exe
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\bin\Debug\TermProject.pdb
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\TermProject.csprojAssemblyReference.cache
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\MainWindow.g.cs
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\App.g.cs
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\TermProject_MarkupCompile.cache
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\TermProject_MarkupCompile.lref
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\MainWindow.baml
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\TermProject.g.resources
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\TermProject.Properties.Resources.resources
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\TermProject.csproj.GenerateResource.cache
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\TermProject.csproj.CoreCompileInputs.cache
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\TermProject.exe
+E:\Users\islam\OneDrive\Desktop\School\Travaux cegep 3\.NET\repos\.Net-Final\obj\Debug\TermProject.pdb
