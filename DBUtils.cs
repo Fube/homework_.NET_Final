@@ -84,7 +84,16 @@ namespace TermProject
             using (var connection = new SqlConnection(_connectionString))
             {
                 _compileCommand(out var command, connection, readAllQuery);
-                connection.Open();
+                try
+                {
+                    connection.Open();
+                }
+                catch (Exception e)
+                {
+                    Trace.WriteLine(_connectionString);
+                    Trace.WriteLine("Cannot open connection");
+                    return toReturn;
+                }
 
                 var reader = command.ExecuteReader();
                 while (reader.Read()) 
