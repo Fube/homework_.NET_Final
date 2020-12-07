@@ -23,7 +23,7 @@ namespace TermProject
         private const string updateQuery =
             "UPDATE dbo.contacts SET first_name=@fName, last_name=@lName, phone_number=@phoneNumber WHERE c.id=@id";
 
-        private const string deleteQuery = "DELETE FROM dbo.contacts c WHERE c.id=@id";
+        private const string deleteQuery = "DELETE FROM dbo.contacts WHERE id=@id";
 
         private static readonly Lazy<DBUtils> LazyInstance = new Lazy<DBUtils>(() => new DBUtils());
 

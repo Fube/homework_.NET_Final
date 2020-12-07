@@ -29,5 +29,21 @@ namespace TermProject
             DBUtils.Instance.Create(new Contact("alpha","bravo", "charlie"));
             DBUtils.Instance.ReadAll().ForEach(n => Trace.WriteLine(n));
         }
+
+        private void Edit(object sender, RoutedEventArgs e)
+        {
+            Trace.WriteLine(((Button) e.Source).DataContext);
+        }
+
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+
+            long.TryParse(((Button) sender).DataContext.ToString(), out long id);
+
+            contacts.Remove(contacts.Single(n => n.ID == id));
+
+            DBUtils.Instance.RemoveOne(id);
+        }
     }
 }

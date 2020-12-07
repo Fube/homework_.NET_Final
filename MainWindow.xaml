@@ -7,6 +7,43 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+<<<<<<< Updated upstream
         
+=======
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <Expander Name="ExpanderControl" Header="{Binding FirstName}" FontSize="15" Margin="7">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200*"/>
+                                    <ColumnDefinition Width="200*"/>
+                                    <ColumnDefinition Width="200*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name:" FontSize="15" Margin="7"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name:" FontSize="15" Margin="7"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Phone Number:" FontSize="15" Margin="7"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding FirstName}" FontSize="15" Margin="7"/>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LastName}" FontSize="15" Margin="7"/>
+                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding PhoneNumber}" FontSize="15" Margin="7"/>
+                                <Button Grid.Column="2" Grid.Row="0" Margin="0 30 0 0" DataContext="{ Binding ID }" Click="Edit">Edit</Button>
+                                <Button Grid.Column="2" Grid.Row="1" Margin="0 30 0 0" DataContext="{ Binding ID }" Click="Delete">Delete</Button>
+                            </Grid>
+                        </Expander>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+>>>>>>> Stashed changes
     </Grid>
 </Window>
