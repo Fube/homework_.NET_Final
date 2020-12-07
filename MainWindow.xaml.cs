@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,21 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ContactLibrary;
 
 namespace TermProject
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-
-            DBUtils.Instance.Create(new Contact("alpha","bravo", "charlie"));
-            DBUtils.Instance.ReadAll().ForEach(n => Trace.WriteLine(n));
+            List<Contacts> person = new List<Contacts>();
+            person.Add(new Contacts() { FirstName = "Shariful", LastName = "Islam", PhoneNumber = "514-239-2349" });
+            person.Add(new Contacts() { FirstName = "Christian", LastName = "Chitanu", PhoneNumber = "514-232-4324" });
+            person.Add(new Contacts() { FirstName = "Nariman", LastName = "Abrari", PhoneNumber = "514-334-3432" });
+            Contact.ItemsSource = person;
         }
+    }
+
+    public class Contacts
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+
     }
 }

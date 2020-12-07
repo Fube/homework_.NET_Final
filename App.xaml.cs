@@ -13,6 +13,5 @@ namespace TermProject
     /// </summary>
     public partial class App : Application
     {
-        
     }
 }

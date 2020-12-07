@@ -15,7 +15,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="5">
-                        <Expander Name="ExpanderControl" Header="{Binding FirstName}" FontSize="15" Margin="7">
+                        <Expander Name="ExpanderControl" Header="{Binding fName}" FontSize="15" Margin="7">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="200*"/>
@@ -29,9 +29,9 @@
                                 <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name:" FontSize="15" Margin="7"/>
                                 <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name:" FontSize="15" Margin="7"/>
                                 <TextBlock Grid.Column="0" Grid.Row="2" Text="Phone Number:" FontSize="15" Margin="7"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding FirstName}" FontSize="15" Margin="7"/>
-                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LastName}" FontSize="15" Margin="7"/>
-                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding PhoneNumber}" FontSize="15" Margin="7"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding fName}" FontSize="15" Margin="7"/>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding lName}" FontSize="15" Margin="7"/>
+                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding phoneNumber}" FontSize="15" Margin="7"/>
                             </Grid>
                         </Expander>
                     </Grid>
