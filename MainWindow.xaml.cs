@@ -31,5 +31,19 @@ namespace TermProject
             DBUtils.Instance.ReadAll().ForEach(contacts.Add);
             ContactsList.ItemsSource = contacts;
         }
+
+        private void Add_Contact(object sender, RoutedEventArgs e)
+        {
+            if (!StandardPopup.IsOpen) { StandardPopup.IsOpen = true; }
+        }
+        private void Close_Add_Contact(object sender, RoutedEventArgs e)
+        {
+            if (StandardPopup.IsOpen) { StandardPopup.IsOpen = false; }
+        }
+
+        private void Save_Add_Contact(object sender, RoutedEventArgs e)
+        {
+            if (StandardPopup.IsOpen) { StandardPopup.IsOpen = false; }
+        }
     }
 }

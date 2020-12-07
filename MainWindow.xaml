@@ -11,6 +11,47 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Label Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="E:\islam\Pictures\2.png" Height="45" Width="45" />
+                <TextBlock Text="Contacts" FontSize="20" FontWeight="Bold" Margin="7,7,185,0"/>
+                <ListViewItem>
+                    <Button Click="Add_Contact" Height="35" Width="35" Margin="0,0,0,0">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="E:\islam\Pictures\1.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                </ListViewItem >
+                <Popup VerticalOffset="50" HorizontalOffset="-160" x:Name="StandardPopup" >
+                    <Border BorderThickness="2" Width="700" Height="200" Background="White" BorderBrush="Black">
+                        <Grid>
+                            <TextBlock HorizontalAlignment="Center" Text="Add A New Contact" FontSize="20"/>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid Margin="0,20,0,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="Enter the first name: " FontSize="15" HorizontalAlignment="Left" Foreground="Black"/>
+                                    <TextBox Grid.Row="0" x:Name="Add_fName" FontSize="15" Width="500" HorizontalAlignment="Right" Margin="180,0,0,0"/>
+                                    <TextBlock Grid.Row="1" Text="Enter the last name: " FontSize="15" HorizontalAlignment="Left" Foreground="Black"/>
+                                    <TextBox Grid.Row="1" x:Name="Add_lName" FontSize="15" Width="500" HorizontalAlignment="Right" Margin="180,0,0,0"/>
+                                    <TextBlock Grid.Row="2" Text="Enter the phone number: " FontSize="15" HorizontalAlignment="Left" Foreground="Black"/>
+                                    <TextBox Grid.Row="2" x:Name="Add_phoneNumber" FontSize="15" Width="500" HorizontalAlignment="Right" Margin="180,0,0,0"/>
+                                    <Button Grid.Row="3" Content="Save" FontSize="15" Click="Save_Add_Contact" HorizontalAlignment="Center" Margin="0,30,100,0"/>
+                                    <Button Grid.Row="3" Content="Close" FontSize="15" Click="Close_Add_Contact" HorizontalAlignment="Center" Margin="100,30,0,0"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Popup>
+            </StackPanel>
+        </Label>
+
         <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
