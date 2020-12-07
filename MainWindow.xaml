@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-<<<<<<< Updated upstream
-        
-=======
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
@@ -44,6 +41,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
->>>>>>> Stashed changes
     </Grid>
 </Window>
