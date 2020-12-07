@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -22,12 +23,13 @@ namespace TermProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<Contact> contacts = new ObservableCollection<Contact>();
         public MainWindow()
         {
             InitializeComponent();
 
-            DBUtils.Instance.Create(new Contact("alpha","bravo", "charlie"));
-            DBUtils.Instance.ReadAll().ForEach(n => Trace.WriteLine(n));
+            DBUtils.Instance.ReadAll().ForEach(contacts.Add);
+            ContactsList.ItemsSource = contacts;
         }
     }
 }
