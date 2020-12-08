@@ -47,7 +47,8 @@ namespace TermProject
 
         private void Add(object sender, RoutedEventArgs e)
         {
-
+            AddWindow addWindow = new AddWindow();
+            addWindow.Show();
         }
 
 

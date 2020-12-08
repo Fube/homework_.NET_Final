@@ -8,7 +8,7 @@
         Title="AddWindow" Height="450" Width="800">
     <Grid>
 
-        <TextBlock HorizontalAlignment="Center" Text="Update Contact" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Center" Text="Add A New Contact" FontSize="20"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid Margin="0,20,0,0">
 
