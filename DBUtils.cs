@@ -21,7 +21,7 @@ namespace TermProject
         private const string readAllQuery = "SELECT * FROM dbo.contacts c ORDER BY c.id";
 
         private const string updateQuery =
-            "UPDATE dbo.contacts SET first_name=@fName, last_name=@lName, phone_number=@phoneNumber WHERE c.id=@id";
+            "UPDATE dbo.contacts SET first_name=@fName, last_name=@lName, phone_number=@phoneNumber WHERE id=@id";
 
         private const string deleteQuery = "DELETE FROM dbo.contacts WHERE id=@id";
 
@@ -108,7 +108,7 @@ namespace TermProject
             return toReturn;
         }
 
-        public void Update(long idToUPD, Contact contact)
+        public void Update(Contact contact)
         {
 
             //TODO: use ContactManager's FindById
@@ -118,11 +118,7 @@ namespace TermProject
 
             var (id, fName, lName, phoneNumber) = contact;
 
-            if (id != null)
-            {
-                throw new DirtyFieldException("ID", "DB");
-            }
-            command.Parameters.AddWithValue("@id", idToUPD);
+            command.Parameters.AddWithValue("@id", id);
             command.Parameters.AddWithValue("@fName", fName);
             command.Parameters.AddWithValue("@lName", lName);
             command.Parameters.AddWithValue("@phoneNumber", phoneNumber);

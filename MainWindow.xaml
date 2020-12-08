@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TermProject"
+        xmlns:System="clr-namespace:ContactLibrary;assembly=ContactLibrary"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -13,7 +14,7 @@
         </Grid.RowDefinitions>
         <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate DataType="{x:Type System:Contact}">
                     <Grid Margin="5">
                         <Expander Name="ExpanderControl" Header="{Binding FirstName}" FontSize="15" Margin="7">
                             <Grid>
