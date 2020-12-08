@@ -23,7 +23,7 @@ namespace TermProject
         private const string readOneQuery = "SELECT * FROM dbo.contacts c where c.id=@id";
 
         private const string updateQuery =
-            "UPDATE dbo.contacts SET first_name=@fName, last_name=@lName, phone_number=@phoneNumber WHERE c.id=@id";
+            "UPDATE dbo.contacts SET first_name=@fName, last_name=@lName, phone_number=@phoneNumber WHERE id=@id";
 
         private const string deleteQuery = "DELETE FROM dbo.contacts c WHERE c.id=@id";
 
