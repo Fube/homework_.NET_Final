@@ -39,7 +39,19 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button Click="Add" Width="150" Style="{ StaticResource OperationsBtn }">Add A New Contact</Button>
+            <Label Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="2.png"/>
+                    <TextBlock Text="Contacts" FontSize="20" FontWeight="Bold"/>
+                </StackPanel>
+            </Label>
+
+            <Button Grid.Column="1" Click="Add" Width="150" Style="{ StaticResource OperationsBtn }">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="A New Contact" FontSize="10"/>
+                    <Image Source="1.png"/>
+                </StackPanel>
+            </Button>
         </Grid>
 
         <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch">
