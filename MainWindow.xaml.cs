@@ -41,17 +41,13 @@ namespace TermProject
 
             Contact contact = ContactManager.Instance.FindById(id);
 
-            UpdateWindow secondWindow = new UpdateWindow(contact);
-            secondWindow.Show();
+            UpdateWindow updateWindow = new UpdateWindow(contact);
+            updateWindow.Show();
+        }
 
-            // AHAHAHAHA IM A GENIUS I SOLVED IT! YOU JUST HAVE TO CALL OnPropertyChanged IN THE SETTER
-            // MY BRAIN IS SO BIG
-            // secondWindow.Closed += (s, rea) =>
-            // {
-            //     // Couldn't find a better workaround. Sue me
-            //     ContactsList.ItemsSource = null;
-            //     ContactsList.ItemsSource = ContactManager.Instance.Contacts;
-            // };
+        private void Add(object sender, RoutedEventArgs e)
+        {
+
         }
 
 
@@ -60,9 +56,18 @@ namespace TermProject
 
             long.TryParse(((Button) sender).DataContext.ToString(), out long id);
 
-            ContactManager.Instance.RemoveContact(id);
+            try
+            {
+                DBUtils.Instance.RemoveOne(id);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong when trying to delete.\nContact support.", "Delete failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
 
-            DBUtils.Instance.RemoveOne(id);
+            ContactManager.Instance.RemoveContact(id);
         }
     }
 }

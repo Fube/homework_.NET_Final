@@ -9,36 +9,6 @@
 
     <Grid>
 
-        <Grid.Resources>
-            <Style TargetType="Label">
-                <Setter Property="FontSize" Value="25" />
-            </Style>
-
-            <Style TargetType="ColumnDefinition">
-                <Setter Property="Width" Value="200*" />
-            </Style>
-
-            <Style x:Key="LeftText" TargetType="TextBlock">
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="HorizontalAlignment" Value="Left"/>
-                <Setter Property="Foreground" Value="Black"></Setter>
-            </Style>
-
-            <Style x:Key="RightText" TargetType="TextBox">
-                <Setter Property="FontSize" Value="15"/>
-                <Setter Property="HorizontalAlignment" Value="Right"/>
-                <Setter Property="Margin" Value="180,0,0,0"/>
-                <Setter Property="Width" Value="500" />
-            </Style>
-
-            <Style TargetType="Button">
-                <Setter Property="FontSize" Value="15" />
-                <Setter Property="HorizontalAlignment" Value="Center" />
-                <Setter Property="Width" Value="50" />
-            </Style>
-
-        </Grid.Resources>
-
         <TextBlock HorizontalAlignment="Center" Text="Update Contact" FontSize="20"/>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid Margin="0,20,0,0">
