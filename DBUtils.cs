@@ -20,12 +20,10 @@ namespace TermProject
 
         private const string readAllQuery = "SELECT * FROM dbo.contacts c ORDER BY c.id";
 
-        private const string readOneQuery = "SELECT * FROM dbo.contacts c where c.id=@id";
-
         private const string updateQuery =
             "UPDATE dbo.contacts SET first_name=@fName, last_name=@lName, phone_number=@phoneNumber WHERE id=@id";
 
-        private const string deleteQuery = "DELETE FROM dbo.contacts c WHERE c.id=@id";
+        private const string deleteQuery = "DELETE FROM dbo.contacts WHERE id=@id";
 
         private static readonly Lazy<DBUtils> LazyInstance = new Lazy<DBUtils>(() => new DBUtils());
 
@@ -88,7 +86,7 @@ namespace TermProject
 
                 var reader = command.ExecuteReader();
                 while (reader.Read()) 
-                    toReturn.Add(new Contact((long)reader["id"],reader["first_name"].ToString(), reader["last_name"].ToString(), reader["phone_number"].ToString()));
+                    toReturn.Add(new Contact((long)reader[0],reader[1].ToString(), reader[2].ToString(), reader[3].ToString()));
                 
             }
 
@@ -100,21 +98,17 @@ namespace TermProject
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                _compileCommand(out var command, connection, readOneQuery);
-
-                command.Parameters.AddWithValue("@id", id);
-
+                _compileCommand(out var command, connection, $"SELECT * FROM dbo.contacts c where c.id={id}");
                 connection.Open();
 
                 var reader = command.ExecuteReader();
-                while (reader.Read())
-                    toReturn.Add(new Contact((long)reader["id"], reader["first_name"].ToString(), reader["last_name"].ToString(), reader["phone_number"].ToString()));
+                toReturn.Add(new Contact((long)reader[0], reader[1].ToString(), reader[2].ToString(), reader[3].ToString()));
             }
 
             return toReturn;
         }
 
-        public void Update(long id)
+        public void Update(Contact contact)
         {
 
             //TODO: use ContactManager's FindById
@@ -122,7 +116,7 @@ namespace TermProject
 
             _compileCommand(out var command, connection, updateQuery);
 
-            var (_, fName, lName, phoneNumber) = ContactManager.Instance.FindById(id);
+            var (id, fName, lName, phoneNumber) = contact;
 
             command.Parameters.AddWithValue("@id", id);
             command.Parameters.AddWithValue("@fName", fName);
@@ -132,13 +126,13 @@ namespace TermProject
             _tryExecute(connection, command);
         }
 
-        public void RemoveOne(long id)
+        public void RemoveOne(long idToDEL)
         {
             var connection = new SqlConnection(_connectionString);
 
             _compileCommand(out var command, connection, deleteQuery);
 
-            command.Parameters.AddWithValue("@id", id);
+            command.Parameters.AddWithValue("@id", idToDEL);
 
             _tryExecute(connection, command);
         }

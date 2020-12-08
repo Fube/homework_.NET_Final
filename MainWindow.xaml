@@ -4,9 +4,78 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TermProject"
+        xmlns:System="clr-namespace:ContactLibrary;assembly=ContactLibrary"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+
+        <Grid.Resources>
+
+            <Style TargetType="Button" x:Key="Btn">
+                <Setter Property="Margin" Value="0 30 0 0" />
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Margin" Value="7"/>
+            </Style>
+
+            <Style TargetType="Button" x:Key="OperationsBtn">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Margin" Value="0 10"/>
+            </Style>
+
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Click="Add" Width="150" Style="{ StaticResource OperationsBtn }">Add A New Contact</Button>
+        </Grid>
+
+        <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type System:Contact}">
+
+                    <Grid Margin="5">
+                        <Expander Name="ExpanderControl" Header="{Binding FirstName}" FontSize="15" Margin="7">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200*"/>
+                                    <ColumnDefinition Width="200*"/>
+                                    <ColumnDefinition Width="200*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name:"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name:"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Phone Number:"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding FirstName}"/>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LastName}"/>
+                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding PhoneNumber}"/>
+
+                                <Button Grid.Column="2" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit">Edit</Button>
+                                <Button Grid.Column="2" Grid.Row="1" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete">Delete</Button>
+
+                            </Grid>
+                        </Expander>
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
