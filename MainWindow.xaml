@@ -36,14 +36,36 @@
         <Grid>
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition/>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Click="Add" Style="{ StaticResource OperationsBtn }">Add A New Contact</Button>
-            <Button Grid.Column="1" Click="ImportCSV" Width="200" Style="{ StaticResource OperationsBtn }">Import Contacts From CSV</Button>
-            <Button Grid.Column="2" Click="ExportCSV" Width="200" Style="{ StaticResource OperationsBtn }">Export Contacts To CSV</Button>
+            <Label Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="2.png"/>
+                    <TextBlock Text="Contacts" FontWeight="Bold"/>
+                </StackPanel>
+            </Label>
+            <Button Grid.Column="1" Click="Add" Style="{ StaticResource OperationsBtn }">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Add New Contact" FontSize="11"/>
+                    <Image Source="1.png"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="2" Click="ImportCSV" Width="180" Style="{ StaticResource OperationsBtn }">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Import Contacts from CSV" FontSize="11" />
+                    <Image Source="6.png" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="3" Click="ExportCSV" Width="180" Style="{ StaticResource OperationsBtn }">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Export Contacts to CSV" FontSize="11"/>
+                    <Image Source="5.png"/>
+                </StackPanel>
+            </Button>
         </Grid>
 
         <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch">

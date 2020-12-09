@@ -9,7 +9,7 @@
 
     <Grid>
 
-        <TextBlock HorizontalAlignment="Center" Text="Update Contact" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Center" Text="Update Contact" FontSize="30" Margin="50"/>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid Margin="0,20,0,0">
 
