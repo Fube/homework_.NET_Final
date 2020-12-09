@@ -23,6 +23,7 @@
             <Style TargetType="Button" x:Key="OperationsBtn">
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="Margin" Value="0 10"/>
+                <Setter Property="Width" Value="150"/>
             </Style>
 
         </Grid.Resources>
@@ -35,23 +36,14 @@
         <Grid>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="2.png"/>
-                    <TextBlock Text="Contacts" FontSize="20" FontWeight="Bold"/>
-                </StackPanel>
-            </Label>
-
-            <Button Grid.Column="1" Click="Add" Width="150" Style="{ StaticResource OperationsBtn }">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock  Text="A New Contact" FontSize="11"/>
-                    <Image Source="1.png"/>
-                </StackPanel>
-            </Button>
+            <Button Click="Add" Style="{ StaticResource OperationsBtn }">Add A New Contact</Button>
+            <Button Grid.Column="1" Click="ImportCSV" Width="200" Style="{ StaticResource OperationsBtn }">Import Contacts From CSV</Button>
+            <Button Grid.Column="2" Click="ExportCSV" Width="200" Style="{ StaticResource OperationsBtn }">Export Contacts To CSV</Button>
         </Grid>
 
         <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch">
@@ -79,18 +71,8 @@
                                 <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LastName}"/>
                                 <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding PhoneNumber}"/>
 
-                                <Button Grid.Column="2" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Edit" FontSize="11"/>
-                                        <Image Source="3.png"/>
-                                    </StackPanel>
-                                </Button>
-                                <Button Grid.Column="2" Grid.Row="1" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Delete" FontSize="11" />
-                                        <Image Source="4.png"/>
-                                    </StackPanel>
-                                </Button>
+                                <Button Grid.Column="2" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit">Edit</Button>
+                                <Button Grid.Column="2" Grid.Row="1" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete">Delete</Button>
 
                             </Grid>
                         </Expander>
