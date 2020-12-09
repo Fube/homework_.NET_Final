@@ -4,61 +4,79 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TermProject"
+        xmlns:System="clr-namespace:ContactLibrary;assembly=ContactLibrary"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="400">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
+
+        <Grid.Resources>
+
+            <Style TargetType="Button" x:Key="Btn">
+                <Setter Property="Margin" Value="0 30 0 0" />
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Margin" Value="7"/>
+            </Style>
+
+            <Style TargetType="Button" x:Key="OperationsBtn">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Margin" Value="0 10"/>
+                <Setter Property="Width" Value="150"/>
+            </Style>
+
+        </Grid.Resources>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="E:\islam\Pictures\2.png" Height="45" Width="45" />
-                <TextBlock Text="Contacts" FontSize="20" FontWeight="Bold" Margin="7,7,185,0"/>
-                <ListViewItem>
-                    <Button Click="Add_Contact" Height="35" Width="35" Margin="0,0,0,0">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Source="E:\islam\Pictures\1.png"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                </ListViewItem >
-                <Popup VerticalOffset="50" HorizontalOffset="-160" x:Name="StandardPopup" >
-                    <Border BorderThickness="2" Width="700" Height="200" Background="White" BorderBrush="Black">
-                        <Grid>
-                            <TextBlock HorizontalAlignment="Center" Text="Add A New Contact" FontSize="20"/>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Grid Margin="0,20,0,0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Text="Enter the first name: " FontSize="15" HorizontalAlignment="Left" Foreground="Black"/>
-                                    <TextBox Grid.Row="0" x:Name="Add_fName" FontSize="15" Width="500" HorizontalAlignment="Right" Margin="180,0,0,0"/>
-                                    <TextBlock Grid.Row="1" Text="Enter the last name: " FontSize="15" HorizontalAlignment="Left" Foreground="Black"/>
-                                    <TextBox Grid.Row="1" x:Name="Add_lName" FontSize="15" Width="500" HorizontalAlignment="Right" Margin="180,0,0,0"/>
-                                    <TextBlock Grid.Row="2" Text="Enter the phone number: " FontSize="15" HorizontalAlignment="Left" Foreground="Black"/>
-                                    <TextBox Grid.Row="2" x:Name="Add_phoneNumber" FontSize="15" Width="500" HorizontalAlignment="Right" Margin="180,0,0,0"/>
-                                    <Button Grid.Row="3" Content="Save" FontSize="15" Click="Save_Add_Contact" HorizontalAlignment="Center" Margin="0,30,100,0"/>
-                                    <Button Grid.Row="3" Content="Close" FontSize="15" Click="Close_Add_Contact" HorizontalAlignment="Center" Margin="100,30,0,0"/>
-                                </Grid>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Popup>
-            </StackPanel>
-        </Label>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="2.png"/>
+                    <TextBlock Text="Contacts" FontWeight="Bold"/>
+                </StackPanel>
+            </Label>
+            <Button Grid.Column="1" Click="Add" Style="{ StaticResource OperationsBtn }">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Add New Contact" FontSize="11"/>
+                    <Image Source="1.png"/>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="2" Click="ImportCSV" Width="180" Style="{ StaticResource OperationsBtn }">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Import Contacts from CSV" FontSize="11" />
+                    <Image Source="6.png" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="3" Click="ExportCSV" Width="180" Style="{ StaticResource OperationsBtn }">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Export Contacts to CSV" FontSize="11"/>
+                    <Image Source="5.png"/>
+                </StackPanel>
+            </Button>
+        </Grid>
 
         <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate DataType="{x:Type System:Contact}">
+
                     <Grid Margin="5">
-                        <Expander Name="ExpanderControl" Header="{Binding fName}" FontSize="15" Margin="7">
+                        <Expander Name="ExpanderControl" Header="{Binding FirstName}" FontSize="15" Margin="7">
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200*"/>
                                     <ColumnDefinition Width="200*"/>
                                     <ColumnDefinition Width="200*"/>
                                 </Grid.ColumnDefinitions>
@@ -67,18 +85,23 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name:" FontSize="15" Margin="7"/>
-                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name:" FontSize="15" Margin="7"/>
-                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Phone Number:" FontSize="15" Margin="7"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding fName}" FontSize="15" Margin="7"/>
-                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding lName}" FontSize="15" Margin="7"/>
-                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding phoneNumber}" FontSize="15" Margin="7"/>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name:"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name:"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Phone Number:"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding FirstName}"/>
+                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LastName}"/>
+                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding PhoneNumber}"/>
+
+                                <Button Grid.Column="2" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit">Edit</Button>
+                                <Button Grid.Column="2" Grid.Row="1" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete">Delete</Button>
+
                             </Grid>
                         </Expander>
                     </Grid>
+
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
 </Window>
-
