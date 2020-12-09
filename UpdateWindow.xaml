@@ -7,32 +7,45 @@
         mc:Ignorable="d"
         Title="UpdateWindow" Height="450" Width="800">
 
-    <Grid>
-
-        <TextBlock HorizontalAlignment="Center" Text="Update Contact" FontSize="30" Margin="50"/>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid Background="#CECECE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="0,0,10,10" Grid.Column="1" Background="#3E486F" >
+            <TextBlock HorizontalAlignment="Center" Text="Update Contact" FontSize="20" VerticalAlignment="Center"  Foreground="#FFF"/>
+        </Border>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+            <Border CornerRadius="10" Background="#FFF" Padding="20">
                 <Grid Margin="0,20,0,0">
-
+                    <Grid.ColumnDefinitions>
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
+                        <RowDefinition Height="10"/>
                         <RowDefinition/>
+                        <RowDefinition Height="40"/>
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Text="First name: "  Style="{StaticResource LeftText}" />
-                <TextBox Grid.Row="0" x:Name="NameText" Style="{StaticResource RightText}" />
+                    <TextBox Grid.Row="0" MaxWidth="300" 
+                         x:Name="NameText" Style="{StaticResource RightText}" Background="#ebebeb"/>
 
-                    <TextBlock Grid.Row="1" Text="Last name: " Style="{StaticResource LeftText}" />
-                <TextBox Grid.Row="1" x:Name="LastNameText" Style="{StaticResource RightText}" />
+                    <TextBlock Grid.Row="2" Text="Last name: " Style="{StaticResource LeftText}" />
+                    <TextBox Grid.Row="2" MaxWidth="300" 
+                         x:Name="LastNameText" Style="{StaticResource RightText}" Background="#ebebeb"/>
 
-                    <TextBlock Grid.Row="2" Text="Phone number: " Style="{StaticResource LeftText}" />
-                <TextBox Grid.Row="2" x:Name="PhoneText" Style="{StaticResource RightText}" />
+                    <TextBlock Grid.Row="4" Text="Phone number: " Style="{StaticResource LeftText}" />
+                    <TextBox Grid.Row="4" MaxWidth="300"
+                         x:Name="PhoneText" Style="{StaticResource RightText}" Background="#ebebeb" />
 
-                    <Button Grid.Row="3" Content="Save" Click="_Save" Margin="0,30,100,0"/>
-                    <Button Grid.Row="3" Content="Close" Click="_Close" Margin="100,30,0,0"/>
+                    <Button Grid.Row="6" Content="Save" Click="_Save" Margin="0,30,100,0"/>
+                    <Button Grid.Row="6" Content="Close" Click="_Close" Margin="100,30,0,0"/>
                 </Grid>
-            </StackPanel>
+            </Border>
+        </StackPanel>
     </Grid>
 
 </Window>
