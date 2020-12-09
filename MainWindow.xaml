@@ -93,8 +93,18 @@
                                 <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LastName}"/>
                                 <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding PhoneNumber}"/>
 
-                                <Button Grid.Column="2" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit">Edit</Button>
-                                <Button Grid.Column="2" Grid.Row="1" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete">Delete</Button>
+                                <Button Grid.Column="2" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="3.png"/>
+                                        <TextBlock Text="Edit" FontSize="11" />
+                                    </StackPanel>
+                                </Button>
+                                <Button Grid.Column="2" Grid.Row="1" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="4.png"/>
+                                        <TextBlock Text="Delete" FontSize="11" />
+                                    </StackPanel>
+                                </Button>
 
                             </Grid>
                         </Expander>

@@ -28,8 +28,18 @@
                 <TextBlock Grid.Row="2" Text="Phone number: " Style="{StaticResource LeftText}" />
                 <TextBox Grid.Row="2" x:Name="PhoneText" Style="{StaticResource RightText}" />
 
-                <Button Grid.Row="3" Content="Save" Click="_Save" Margin="0,30,100,0"/>
-                <Button Grid.Row="3" Content="Close" Click="_Close" Margin="100,30,0,0"/>
+                <Button Grid.Row="3" Click="_Save" Width="100" Margin="0,30,200,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Save  " FontSize="20" />
+                        <Image Source="8.png" Width="25" />
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="3" Click="_Close" Width="100" Margin="200,30,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Close  " FontSize="20"/>
+                        <Image Source="7.png" Width="25"/>
+                    </StackPanel>
+                </Button>
             </Grid>
         </StackPanel>
     </Grid>
