@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -40,15 +41,18 @@ namespace TermProject
 
             try
             {
-                DBUtils.Instance.Create(toAdd);
+                long id = DBUtils.Instance.Create(toAdd);
+
+                var (_, fname, lname, phone) = toAdd;
+
+                ContactManager.Instance.AddContact(new Contact(id, fname, lname, phone));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Something went wrong when trying to add.\nContact support.", "Add failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                Trace.WriteLine(ex.StackTrace);
                 return;
             }
-
-            ContactManager.Instance.AddContact(toAdd);
 
             Close();
         }

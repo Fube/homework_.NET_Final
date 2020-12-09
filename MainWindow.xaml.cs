@@ -1,21 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ContactLibrary;
+using Microsoft.Win32;
 
 namespace TermProject
 {
@@ -55,7 +45,7 @@ namespace TermProject
         private void Delete(object sender, RoutedEventArgs e)
         {
 
-            long.TryParse(((Button) sender).DataContext.ToString(), out long id);
+            long.TryParse(((Button) sender).DataContext.ToString(), out var id);
 
             try
             {
@@ -69,6 +59,33 @@ namespace TermProject
             
 
             ContactManager.Instance.RemoveContact(id);
+        }
+
+        private void ImportCSV(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openCSV = new OpenFileDialog {DefaultExt = ".csv", Filter = "CSV Files (*.csv)|*.csv"};
+
+
+            bool? result = openCSV.ShowDialog();
+
+            if (result == false)
+            {
+                MessageBox.Show("Something went wrong when trying to open your CSV file.\nContact support.", "Import failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            string fileName = openCSV.FileName;
+
+            List<Contact> toAdd = CSVUtils.Instance.ImportFromFile(new StreamReader(fileName).BaseStream);
+
+            Console.WriteLine(toAdd.Count);
+           DBUtils.Instance.CreateMany(toAdd)
+               .ForEach(ContactManager.Instance.AddContact);
+
+        }
+
+        private void ExportCSV(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
