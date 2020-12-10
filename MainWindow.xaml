@@ -6,13 +6,18 @@
         xmlns:local="clr-namespace:TermProject"
         xmlns:System="clr-namespace:ContactLibrary;assembly=ContactLibrary"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800" MinHeight="400" MinWidth="750">
+    <Grid >
 
         <Grid.Resources>
-
+            
+            <Style TargetType="Grid" x:Key="GridBackground">
+                <Setter Property="Background" Value="#3E486F"/>
+            </Style>
+            
             <Style TargetType="Button" x:Key="Btn">
                 <Setter Property="Margin" Value="0 30 0 0" />
+                <Setter Property="Background" Value="#CECECE"/>
             </Style>
 
             <Style TargetType="TextBlock">
@@ -24,6 +29,13 @@
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="Margin" Value="0 10"/>
                 <Setter Property="Width" Value="150"/>
+                <Setter  Property="Background" Value="#7C8DCB"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="TXTcolorTop" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="Foreground" Value="#EAECED"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="PersonInfo" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="Margin" Value="50,0,0,0"/>
             </Style>
 
         </Grid.Resources>
@@ -33,7 +45,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid  Style="{StaticResource GridBackground}">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
@@ -44,8 +56,8 @@
 
             <Label Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="2.png"/>
-                    <TextBlock Text="Contacts" FontWeight="Bold"/>
+                    <Image Source="2.png" Width="30"/>
+                    <TextBlock Text="Contacts" FontWeight="Bold" Style="{ StaticResource TXTcolorTop }"/>
                 </StackPanel>
             </Label>
             <Button Grid.Column="1" Click="Add" Style="{ StaticResource OperationsBtn }">
@@ -68,15 +80,14 @@
             </Button>
         </Grid>
 
-        <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch">
+        <ListBox Grid.Row="1" x:Name="ContactsList" HorizontalContentAlignment="Stretch" Background="#CECECE">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type System:Contact}">
 
                     <Grid Margin="5">
-                        <Expander Name="ExpanderControl" Header="{Binding FirstName}" FontSize="15" Margin="7">
+                        <Expander Name="ExpanderControl" Header="{Binding FirstName}" Margin="-5" FontSize="15" Background="#FFFFFF" Padding="10">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200*"/>
                                     <ColumnDefinition Width="200*"/>
                                     <ColumnDefinition Width="200*"/>
                                 </Grid.ColumnDefinitions>
@@ -84,17 +95,20 @@
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name:"/>
-                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Last Name:"/>
-                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Phone Number:"/>
-                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding FirstName}"/>
-                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LastName}"/>
-                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding PhoneNumber}"/>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="First Name:" TextDecorations="underline"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding FirstName}" Style="{ StaticResource PersonInfo }"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Last Name:" TextDecorations="underline"/>
+                                <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding LastName}" Style="{ StaticResource PersonInfo }"/>
+                                <TextBlock Grid.Column="0" Grid.Row="4" Text="Phone Number:" TextDecorations="underline"/>
+                                <TextBlock Grid.Column="0" Grid.Row="5" Text="{Binding PhoneNumber}" Style="{ StaticResource PersonInfo }"/>
 
-                                <Button Grid.Column="2" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit">Edit</Button>
-                                <Button Grid.Column="2" Grid.Row="1" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete">Delete</Button>
+                                <Button Grid.Column="1" Grid.RowSpan="3" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit" MaxWidth="200">Edit</Button>
+                                <Button Grid.Column="1" Grid.RowSpan="3" Grid.Row="3" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete" MaxWidth="200">Delete</Button>
 
                             </Grid>
                         </Expander>

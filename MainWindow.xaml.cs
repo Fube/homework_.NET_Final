@@ -69,19 +69,25 @@ namespace TermProject
             OpenFileDialog openCSV = new OpenFileDialog {DefaultExt = ".csv", Filter = "CSV Files (*.csv)|*.csv"};
 
 
-            bool? result = openCSV.ShowDialog();
-
-            if (result == false)
+            openCSV.FileOk += (_, __) =>
             {
-                MessageBox.Show("Something went wrong when trying to open your CSV file.\nContact support.",
-                    "Import failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+                try
+                {
+                    List<Contact> toAdd = CSVUtils.Instance.ImportFromFile(openCSV.OpenFile());
 
-            List<Contact> toAdd = CSVUtils.Instance.ImportFromFile(openCSV.OpenFile());
+                    DBUtils.Instance.CreateMany(toAdd)
+                        .ForEach(ContactManager.Instance.AddContact);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Something went wrong when trying to open your CSV file.\nContact support.",
+                        "Import failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Trace.WriteLine(ex.StackTrace);
+                }
 
-            DBUtils.Instance.CreateMany(toAdd)
-                .ForEach(ContactManager.Instance.AddContact);
+            };
+
+            openCSV.ShowDialog();
 
         }
 
@@ -94,7 +100,17 @@ namespace TermProject
 
                 if (result != System.Windows.Forms.DialogResult.OK) return;
 
-                CSVUtils.Instance.ExportToFile(exportCSV.SelectedPath + @"\contacts.csv");
+                try
+                {
+                    CSVUtils.Instance.ExportToFile(exportCSV.SelectedPath + @"\contacts.csv");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Something went wrong when trying to export your CSV file.\nContact support.",
+                        "Export failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Trace.WriteLine(ex.StackTrace);
+                }
+                
             }
         }
     }
