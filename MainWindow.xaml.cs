@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Forms;
 using ContactLibrary;
+using Button = System.Windows.Controls.Button;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace TermProject
 {
@@ -22,14 +16,11 @@ namespace TermProject
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
 
-<<<<<<< Updated upstream
-            DBUtils.Instance.Create(new Contact("alpha","bravo", "charlie"));
-            DBUtils.Instance.ReadAll().ForEach(n => Trace.WriteLine(n));
-=======
             DBUtils.Instance.ReadAll().ForEach(ContactManager.Instance.AddContact);
 
             ContactsList.ItemsSource = ContactManager.Instance.Contacts;
@@ -38,7 +29,7 @@ namespace TermProject
         private void Edit(object sender, RoutedEventArgs e)
         {
 
-            long.TryParse(((Button) sender).DataContext.ToString(), out long id);
+            long.TryParse(((Button)sender).DataContext.ToString(), out long id);
 
             Contact contact = ContactManager.Instance.FindById(id);
 
@@ -56,7 +47,7 @@ namespace TermProject
         private void Delete(object sender, RoutedEventArgs e)
         {
 
-            long.TryParse(((Button) sender).DataContext.ToString(), out var id);
+            long.TryParse(((Button)sender).DataContext.ToString(), out var id);
 
             try
             {
@@ -75,7 +66,7 @@ namespace TermProject
 
         private void ImportCSV(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openCSV = new OpenFileDialog {DefaultExt = ".csv", Filter = "CSV Files (*.csv)|*.csv"};
+            OpenFileDialog openCSV = new OpenFileDialog { DefaultExt = ".csv", Filter = "CSV Files (*.csv)|*.csv" };
 
 
             openCSV.FileOk += (_, __) =>
@@ -118,10 +109,7 @@ namespace TermProject
                 }
             };
 
-
             exportCSV.ShowDialog();
-
->>>>>>> Stashed changes
         }
     }
 }
