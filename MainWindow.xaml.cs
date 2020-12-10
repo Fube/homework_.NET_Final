@@ -93,16 +93,13 @@ namespace TermProject
 
         private void ExportCSV(object sender, RoutedEventArgs e)
         {
-            using (var exportCSV = new FolderBrowserDialog())
+            var exportCSV = new SaveFileDialog { DefaultExt = ".csv", Filter = "CSV Files (*.csv)|*.csv" };
+
+            exportCSV.FileOk += (_, __) =>
             {
-
-                var result = exportCSV.ShowDialog();
-
-                if (result != System.Windows.Forms.DialogResult.OK) return;
-
                 try
                 {
-                    CSVUtils.Instance.ExportToFile(exportCSV.SelectedPath + @"\contacts.csv");
+                    CSVUtils.Instance.ExportToFile(exportCSV.FileName);
                 }
                 catch (Exception ex)
                 {
@@ -110,8 +107,9 @@ namespace TermProject
                         "Export failed", MessageBoxButton.OK, MessageBoxImage.Error);
                     Trace.WriteLine(ex.StackTrace);
                 }
-                
-            }
+            };
+
+            exportCSV.ShowDialog();
         }
     }
 }
