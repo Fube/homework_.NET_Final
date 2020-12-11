@@ -107,8 +107,18 @@
                                 <TextBlock Grid.Column="0" Grid.Row="4" Text="Phone Number:" TextDecorations="underline"/>
                                 <TextBlock Grid.Column="0" Grid.Row="5" Text="{Binding PhoneNumber}" Style="{ StaticResource PersonInfo }"/>
 
-                                <Button Grid.Column="1" Grid.RowSpan="3" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit" MaxWidth="200">Edit</Button>
-                                <Button Grid.Column="1" Grid.RowSpan="3" Grid.Row="3" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete" MaxWidth="200">Delete</Button>
+                                <Button Grid.Column="1" Grid.RowSpan="3" Grid.Row="0" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Edit" MaxWidth="200">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="3.png"/>
+                                        <TextBlock Text="Edit" FontSize="11" />
+                                    </StackPanel>
+                                </Button>
+                                <Button Grid.Column="1" Grid.RowSpan="3" Grid.Row="3" Style="{ StaticResource Btn }" DataContext="{ Binding ID }" Click="Delete" MaxWidth="200">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="4.png"/>
+                                        <TextBlock Text="Delete" FontSize="11" />
+                                    </StackPanel>
+                                </Button>
 
                             </Grid>
                         </Expander>
