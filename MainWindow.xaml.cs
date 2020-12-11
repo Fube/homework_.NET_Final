@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Forms;
 using ContactLibrary;
-using Microsoft.Win32;
+using Button = System.Windows.Controls.Button;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 
 namespace TermProject
 {
@@ -45,7 +47,7 @@ namespace TermProject
         private void Delete(object sender, RoutedEventArgs e)
         {
 
-            long.TryParse(((Button) sender).DataContext.ToString(), out var id);
+            long.TryParse(((Button)sender).DataContext.ToString(), out var id);
 
             try
             {
@@ -53,39 +55,61 @@ namespace TermProject
             }
             catch (Exception)
             {
-                MessageBox.Show("Something went wrong when trying to delete.\nContact support.", "Delete failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Something went wrong when trying to delete.\nContact support.", "Delete failed",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            
+
 
             ContactManager.Instance.RemoveContact(id);
         }
 
         private void ImportCSV(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openCSV = new OpenFileDialog {DefaultExt = ".csv", Filter = "CSV Files (*.csv)|*.csv"};
+            OpenFileDialog openCSV = new OpenFileDialog { DefaultExt = ".csv", Filter = "CSV Files (*.csv)|*.csv" };
 
 
-            bool? result = openCSV.ShowDialog();
-
-            if (result == false)
+            openCSV.FileOk += (_, __) =>
             {
-                MessageBox.Show("Something went wrong when trying to open your CSV file.\nContact support.", "Import failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+                try
+                {
+                    List<Contact> toAdd = CSVUtils.Instance.ImportFromFile(openCSV.OpenFile());
 
-            string fileName = openCSV.FileName;
+                    DBUtils.Instance.CreateMany(toAdd)
+                        .ForEach(ContactManager.Instance.AddContact);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Something went wrong when trying to open your CSV file.\nContact support.",
+                        "Import failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Trace.WriteLine(ex.StackTrace);
+                }
 
-            List<Contact> toAdd = CSVUtils.Instance.ImportFromFile(new StreamReader(fileName).BaseStream);
+            };
 
-            Console.WriteLine(toAdd.Count);
-           DBUtils.Instance.CreateMany(toAdd)
-               .ForEach(ContactManager.Instance.AddContact);
+            openCSV.ShowDialog();
 
         }
 
         private void ExportCSV(object sender, RoutedEventArgs e)
         {
+            var exportCSV = new SaveFileDialog { DefaultExt = ".csv", Filter = @"CSV Files (*.csv)|*.csv" };
+
+            exportCSV.FileOk += (_, __) =>
+            {
+                try
+                {
+                    CSVUtils.Instance.ExportToFile(exportCSV.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Something went wrong when trying to export your CSV file.\nContact support.",
+                        "Export failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Trace.WriteLine(ex.StackTrace);
+                }
+            };
+
+            exportCSV.ShowDialog();
         }
     }
 }

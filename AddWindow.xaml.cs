@@ -21,7 +21,7 @@ namespace TermProject
             Contact toAdd = new Contact(NameText.Text, LastNameText.Text, PhoneText.Text);
 
             // Basic input validation
-            Regex reg = new Regex(@"[\d-]+");
+            Regex reg = new Regex(@"^([\d]{3}-){2}[\d]{4}$");
             if (!reg.IsMatch(PhoneText.Text) && !PhoneText.Text.Equals(string.Empty))
             {
                 MessageBox.Show("The phone number is invalid", "Invalid", MessageBoxButton.OK, MessageBoxImage.Error);

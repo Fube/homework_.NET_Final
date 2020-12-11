@@ -5,42 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TermProject"
         mc:Ignorable="d"
-        Title="AddWindow" Height="450" Width="800">
-    <Grid>
-
-        <TextBlock HorizontalAlignment="Center" Text="Add A New Contact" FontSize="30" Margin="50"/>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        Title="AddWindow" MaxHeight="450" MaxWidth="600" MinHeight="450" MinWidth="600" Height="450" Width="600">
+    <Grid Background="#CECECE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="0,0,10,10" Grid.Column="1" Background="#3E486F" >
+        <TextBlock HorizontalAlignment="Center" Text="Add A New Contact" FontSize="20" VerticalAlignment="Center"  Foreground="#FFF"/>
+        </Border>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+            <Border CornerRadius="10" Background="#FFF" Padding="20">
             <Grid Margin="0,20,0,0">
-
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
+                    <RowDefinition Height="10"/>
                     <RowDefinition/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="First name: "  Style="{StaticResource LeftText}" />
-                <TextBox Grid.Row="0" x:Name="NameText" Style="{StaticResource RightText}" />
+                <TextBox Grid.Row="0" MaxWidth="300" 
+                         x:Name="NameText" Style="{StaticResource RightText}" Background="#ebebeb"/>
 
-                <TextBlock Grid.Row="1" Text="Last name: " Style="{StaticResource LeftText}" />
-                <TextBox Grid.Row="1" x:Name="LastNameText" Style="{StaticResource RightText}" />
+                <TextBlock Grid.Row="2" Text="Last name: " Style="{StaticResource LeftText}" />
+                <TextBox Grid.Row="2" MaxWidth="300" 
+                         x:Name="LastNameText" Style="{StaticResource RightText}" Background="#ebebeb"/>
 
-                <TextBlock Grid.Row="2" Text="Phone number: " Style="{StaticResource LeftText}" />
-                <TextBox Grid.Row="2" x:Name="PhoneText" Style="{StaticResource RightText}" />
-
-                <Button Grid.Row="3" Click="_Save" Width="100" Margin="0,30,200,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Save  " FontSize="20" />
-                        <Image Source="8.png" Width="25" />
-                    </StackPanel>
-                </Button>
-                <Button Grid.Row="3" Click="_Close" Width="100" Margin="200,30,0,0">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Close  " FontSize="20"/>
-                        <Image Source="7.png" Width="25"/>
-                    </StackPanel>
-                </Button>
-            </Grid>
+                <TextBlock Grid.Row="4" Text="Phone number: " Style="{StaticResource LeftText}" />
+                <TextBox Grid.Row="4" MaxWidth="300"
+                         x:Name="PhoneText" Style="{StaticResource RightText}" Background="#ebebeb" />
+                    <Button Grid.Row="6" Click="_Save" Width="100" Margin="0,30,200,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Save  " FontSize="20" />
+                            <Image Source="8.png" Width="25" />
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="6" Click="_Close" Width="100" Margin="200,30,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Close  " FontSize="20"/>
+                            <Image Source="7.png" Width="25"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
         </StackPanel>
     </Grid>
 </Window>
